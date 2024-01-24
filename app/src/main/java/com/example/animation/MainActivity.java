@@ -1,11 +1,14 @@
 package com.example.animation;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -47,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
         Button btnBounce = findViewById(R.id.btnBounce);
         Button btnSequential = findViewById(R.id.btnSequential);
         Button btnTogether = findViewById(R.id.btnTogether);
+        Button btnDrawable = findViewById(R.id.btnTri);
 
         btnFadeIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -149,6 +153,25 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Animation together = AnimationUtils.loadAnimation(MainActivity.this, R.anim.together);
                 togetherT.startAnimation(together);
+            }
+        });
+
+        btnDrawable.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setContentView(R.layout.activity_drawable_animation);
+                ImageView img = (ImageView) findViewById(R.id.tri);
+                img.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        AnimationDrawable animation = (AnimationDrawable) img.getDrawable();
+                        animation.stop();
+                        animation.selectDrawable(0);
+                        animation.start();
+                    }
+                });
+
+
             }
         });
     }
